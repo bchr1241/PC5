@@ -34,12 +34,16 @@ def tier(points: int): #Creando una categoría en base al puntaje del vino
 
 df_renombrado['Tier'] = df_renombrado.points.apply(tier)
 
+df_renombrado.to_excel('./data/winemag0.xlsx', index = False)
+
 df_paises = pd.read_csv("https://gist.githubusercontent.com/kintero/7d1db891401f56256c79/raw/a61f6d0dda82c3f04d2e6e76c3870552ef6cf0c6/paises.csv")
 
-df_renombrado = pd.merge(df_renombrado, df_paises, how = "inner", left_on= "pais", right_on="nombre")
+df_renombrado = pd.merge(df_renombrado, df_paises, how = "left", left_on= "pais", right_on="nombre") #Agregando columna de continente
 
 print(df_renombrado.head())
 print(df_renombrado.shape)
 
-#print(df_renombrado['Tier'].head())
+#df_renombrado.to_excel('./data/winemagggggg.xlsx', index = False)
+
+
 
